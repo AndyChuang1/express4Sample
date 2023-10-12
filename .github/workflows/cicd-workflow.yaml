@@ -18,11 +18,11 @@ jobs:
         run: docker push bboy81905/nodejs-app:latest
   deploy:
     needs: build
-    runs-on: [ip-172-31-47-226]
+    runs-on: [aws-ec2]
     steps:
       - name: Pull image from docker hub
         run: docker pull bboy81905/nodejs-app:latest
       - name: Delete old container
         run: docker rm -f nodejs-app
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name nodejs-app  bboy81905/nodejs-app
+        run: docker run -d -p 3000:3000 --name nodejs-app bboy81905/nodejs-app
